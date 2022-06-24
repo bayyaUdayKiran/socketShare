@@ -28,18 +28,7 @@ def zip():
     return the_dir + ".zip", size
 
 
-'''
-def file_info():
-    #Returns, filename & filesize..
-    the_file = None
-    for file in os.listdir():
-        if ((file!="recepient.py")and(file!="sender.py")):
-            if(os.path.isfile(file)):
-                the_file = file
-                size = os.path.getsize(the_file)
-    return the_file, size
 
-'''
 
 def connect(filename, filesize):
     #Establishes  a connection between the socket and host..
