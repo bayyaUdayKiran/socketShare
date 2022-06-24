@@ -33,7 +33,7 @@ def connect(filename, filesize):
 
 def send_file(filename, filesize):
     #Sends the desired file to the recepient..
-    progress = tqdm.tqdm(range(filesize), f"Sending {filename}", unit="B", unit_scale=True, unit_divisor=1024)
+    progress = tqdm.tqdm(range(filesize), f"Sending {filename}", unit="B", unit_scale=True, unit_divisor=4096)
     with open(filename, "rb") as f:
         while True:
             bytes_read = f.read(BUFFER_SIZE)
