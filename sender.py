@@ -22,7 +22,8 @@ def zip():
     #Making an archieve from the folder..
     print("Compressing the folder " + the_dir + ", to " + the_dir + ".zip...")
     shutil.make_archive(the_dir, 'zip', 'movies')
-    shutil.rmtree("movies")
+    
+
     size = os.path.getsize(the_dir + ".zip")
     return the_dir + ".zip", size
 
@@ -67,7 +68,7 @@ def main():
     filename, filesize = zip()
     connect(filename, filesize)
     send_file(filename, filesize)
-    zip()
+    os.remove("movies.zip")
 
 
 
