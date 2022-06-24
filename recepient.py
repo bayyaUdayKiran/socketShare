@@ -3,6 +3,7 @@
 import socket
 import tqdm
 import os
+from zipfile import ZipFile
 
 IP_ADDR = input("Receiver's IP Address: ")
 PORT = int(input("Receiver's Port Number: "))
@@ -50,11 +51,29 @@ def recv_file(filename, filesize, send_sock):
     recv_sock.close()
 
 
+def unzip(filename):
+    with ZipFile(filename, 'r') as zip:
+        print('Unzipping the folder now...')
+        zip.extractall()
+        print('Done!')
+    #os.remove("movies.zip")
+
+
+
+
+
+
 def main():
     send_sock = accept_sender()
     filename, filesize = recv_file_info(send_sock)
     recv_file(filename, filesize, send_sock)
-
+    unzip("movies.zip")
 
 if __name__ == "__main__":
     main()
+
+
+
+
+    
+

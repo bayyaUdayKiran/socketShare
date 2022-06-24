@@ -2,6 +2,8 @@
 import tqdm
 import socket
 import os
+import shutil
+
 
 IP_ADDR = input("Recepient's IP Address: ")
 PORT = int(input("Recepient's Port Number:"))
@@ -12,6 +14,20 @@ BUFFER_SIZE = 4096
 send_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
+def zip():
+    for dir in os.listdir():
+        if ((dir!="recepient.py")and(dir!="sender.py")and(dir!="venv")):
+            the_dir = dir
+
+    #Making an archieve from the folder..
+    print("Compressing the folder " + the_dir + ", to " + the_dir + ".zip...")
+    shutil.make_archive(the_dir, 'zip', 'movies')
+    shutil.rmtree("movies")
+    size = os.path.getsize(the_dir + ".zip")
+    return the_dir + ".zip", size
+
+
+'''
 def file_info():
     #Returns, filename & filesize..
     the_file = None
@@ -22,6 +38,7 @@ def file_info():
                 size = os.path.getsize(the_file)
     return the_file, size
 
+'''
 
 def connect(filename, filesize):
     #Establishes  a connection between the socket and host..
@@ -47,9 +64,11 @@ def send_file(filename, filesize):
     send_sock.close()
 
 def main():
-    filename, filesize = file_info()
+    filename, filesize = zip()
     connect(filename, filesize)
     send_file(filename, filesize)
+    zip()
+
 
 
 if __name__ == "__main__":
