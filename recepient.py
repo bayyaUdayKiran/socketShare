@@ -56,8 +56,7 @@ def unzip(filename):
         print('Unzipping the folder now...')
         zip.extractall()
         print('Done!')
-    #os.remove("movies.zip")
-
+    
 
 
 
@@ -67,7 +66,7 @@ def main():
     send_sock = accept_sender()
     filename, filesize = recv_file_info(send_sock)
     recv_file(filename, filesize, send_sock)
-    unzip("movies.zip")
+    unzip(filename)
 
 if __name__ == "__main__":
     main()
