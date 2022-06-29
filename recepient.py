@@ -18,7 +18,7 @@ recv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 def accept_sender():
     recv_sock.bind((IP_ADDR, PORT))
     recv_sock.listen(5)
-    print(f"[*] Waiting for the sender as {IP_ADDR}:{PORT}")
+    print(f"[*] Waiting for the sender at {IP_ADDR}:{PORT}")
     send_sock, send_addr = recv_sock.accept()
     # if below code is executed, that means the sender is connected
     print(f"[+] {send_addr} is connected.")
