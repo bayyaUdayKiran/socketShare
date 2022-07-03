@@ -35,7 +35,7 @@ def recv_file_info(send_sock):
 
 
 def recv_file(filename, filesize, send_sock):
-    progress = tqdm.tqdm(range(filesize), f"Receiving {filename}", unit="B", unit_scale=True, unit_divisor=4096)
+    progress = tqdm.tqdm(range(filesize), f"Receiving {filename}", unit="B", unit_scale=True, unit_divisor=1024)
     with open(filename, "wb") as f:
         while True:
             bytes_read = send_sock.recv(BUFFER_SIZE)
