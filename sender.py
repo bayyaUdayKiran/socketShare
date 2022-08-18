@@ -5,9 +5,9 @@ import os
 import shutil
 import sys
 
-IP_ADDR = ''
 switch = sys.argv[1]
-PORT = int(sys.argv[2])
+IP_ADDR = sys.argv[2]
+PORT = int(sys.argv[3])
 
 
 SEPERATOR = ";"

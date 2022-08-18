@@ -7,9 +7,9 @@ from zipfile import ZipFile
 import shutil
 import sys
 
+IP_ADDR = ''
 switch = sys.argv[1]
-IP_ADDR = sys.argv[2]
-PORT = int(sys.argv[3])
+PORT = int(sys.argv[2])
 
 BUFFER_SIZE = 4096
 SEPARATOR = ";"
@@ -21,7 +21,7 @@ recv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 def accept_sender():
     recv_sock.bind((IP_ADDR, PORT))
     recv_sock.listen(5)
-    print(f"[*] Waiting for the sender at {IP_ADDR}:{PORT}")
+    print(f"[*] Waiting for the sender at [any]:{PORT}")
     send_sock, send_addr = recv_sock.accept()
     # if below code is executed, that means the sender is connected
     print(f"[+] {send_addr} is connected.")
