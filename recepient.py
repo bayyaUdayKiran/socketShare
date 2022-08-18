@@ -5,9 +5,11 @@ import tqdm
 import os
 from zipfile import ZipFile
 import shutil
+import sys
 
-IP_ADDR = input("Receiver's IP Address: ")
-PORT = int(input("Receiver's Port Number: "))
+switch = sys.argv[1]
+IP_ADDR = sys.argv[2]
+PORT = int(sys.argv[3])
 
 BUFFER_SIZE = 4096
 SEPARATOR = ";"
@@ -61,11 +63,9 @@ def unzip(filename):
 
 
 def directorise(dirname):
-
     files = []
-
     for file in os.listdir():
-        if ((file!="recepient.py")and(file!="sender.py")and(file!="venv")):
+        if ((file!="recepient.py")and(file!="sender.py")and(file!="venv")and(file!="socketShare.fix")):
             if(os.path.isfile(file)):
                 files.append(file)
 
@@ -82,9 +82,17 @@ def main():
     send_sock = accept_sender()
     filename, filesize = recv_file_info(send_sock)
     recv_file(filename, filesize, send_sock)
-    unzip(filename)
-    dirname = filename.replace('.zip', '')
-    directorise(dirname)
+    if switch == '-d':
+        unzip(filename)
+        dirname = filename.replace('.zip', '')
+        directorise(dirname)
+
+   
+
+        
+
+
+    
 
 if __name__ == "__main__":
     main()

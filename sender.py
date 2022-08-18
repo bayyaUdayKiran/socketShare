@@ -3,10 +3,12 @@ import tqdm
 import socket
 import os
 import shutil
+import sys
 
+IP_ADDR = ''
+switch = sys.argv[1]
+PORT = int(sys.argv[2])
 
-IP_ADDR = input("Recepient's IP Address: ")
-PORT = int(input("Recepient's Port Number:"))
 
 SEPERATOR = ";"
 BUFFER_SIZE = 4096
@@ -16,7 +18,7 @@ send_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 def zip():
     for dir in os.listdir():
-        if ((dir!="recepient.py")and(dir!="sender.py")and(dir!="venv")):
+        if ((dir!="recepient.py")and(dir!="sender.py")and(dir!="venv")and(dir!="socketShare.fix")):
             the_dir = dir
 
     #Making an archieve from the folder..
@@ -54,9 +56,17 @@ def send_file(filename, filesize):
     send_sock.close()
 
 def main():
-    filename, filesize = zip()
+    if switch == 'd':
+        filename, filesize = zip()
+    elif switch == '-f':
+        for file in os.listdir():
+            if ((file!="recepient.py")and(file!="sender.py")and(file!="venv")and(file!="socketShare.fix")):
+                filename = file
+        filesize = os.path.getsize(filename)
     connect(filename, filesize)
     send_file(filename, filesize)
+
+    
 
 
 
