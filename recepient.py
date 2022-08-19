@@ -59,6 +59,7 @@ def unzip(filename):
         print('Unzipping the folder now...')
         zip.extractall()
         print('Done!')
+        os.remove(filename)
     
 
 

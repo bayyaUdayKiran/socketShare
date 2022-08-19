@@ -1,4 +1,3 @@
 # Automatically Clean junk(unwanted files & dirs) before starting the main socket program, that may change the behaviour of the program.
 # Move the received directory from the sender to a particular path(location) in filesystem wherever the user desires.
-# Take the user input before sharing, wether he's sharing a dir or file. And by doing so, prepare seperate 2 sub programs one for file sharing & other for dir sharing.
 # Make sender(client) try to connecet to the server untill a sucessful connection is established..

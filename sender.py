@@ -16,11 +16,27 @@ BUFFER_SIZE = 4096
 send_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
-def zip():
+def file_info(switch):
     for dir in os.listdir():
         if ((dir!="recepient.py")and(dir!="sender.py")and(dir!="venv")and(dir!="socketShare.fix")):
             the_dir = dir
 
+    if switch == '-d':
+        filename, filesize = zip(the_dir)
+    elif switch == '-f':
+        filename = the_dir
+        filesize = os.path.getsize(filename)
+
+    return filename, filesize
+
+        
+
+def zip(the_dir):
+    '''
+    for dir in os.listdir():
+        if ((dir!="recepient.py")and(dir!="sender.py")and(dir!="venv")and(dir!="socketShare.fix")):
+            the_dir = dir
+    '''
     #Making an archieve from the folder..
     print("Compressing the folder " + the_dir + ", to " + the_dir + ".zip...")
     shutil.make_archive(the_dir, 'zip', the_dir)
@@ -32,12 +48,12 @@ def zip():
 
 
 
-def connect(filename, filesize):
+def connectNsendIno(filename, filesize):
     #Establishes  a connection between the socket and host..
     print(f"[+] Connecting to {IP_ADDR}:{PORT}..")
     send_sock.connect((IP_ADDR, PORT))
     print("[+] Connected.")
-    send_sock.send(f"{filename}{SEPERATOR}{filesize}".encode())
+    send_sock.send(f"{filename}{SEPERATOR}{filesize}".encode()) #Sends the file's info to the server..
 
 
 def send_file(filename, filesize):
@@ -50,12 +66,14 @@ def send_file(filename, filesize):
                 break
 
             send_sock.sendall(bytes_read)
-            # update the progress bar
-            progress.update(len(bytes_read))
+            progress.update(len(bytes_read))  # update the progress bar
 
     send_sock.close()
+    os.remove(filename) #Deleting the unwanted zip file..
 
 def main():
+    filename, filesize = file_info(switch)
+    '''
     if switch == '-d':
         filename, filesize = zip()
     elif switch == '-f':
@@ -63,7 +81,8 @@ def main():
             if ((file!="recepient.py")and(file!="sender.py")and(file!="venv")and(file!="socketShare.fix")):
                 filename = file
         filesize = os.path.getsize(filename)
-    connect(filename, filesize)
+    '''
+    connectNsendIno(filename, filesize)
     send_file(filename, filesize)
 
     
