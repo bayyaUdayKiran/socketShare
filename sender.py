@@ -56,9 +56,7 @@ def send_file(filename, filesize):
     send_sock.close()
 
 def main():
-    filename = ''
-    filesize = 0
-    if switch == 'd':
+    if switch == '-d':
         filename, filesize = zip()
     elif switch == '-f':
         for file in os.listdir():
