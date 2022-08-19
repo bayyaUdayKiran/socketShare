@@ -51,7 +51,13 @@ def zip(the_dir):
 def connectNsendIno(filename, filesize):
     #Establishes  a connection between the socket and host..
     print(f"[+] Connecting to {IP_ADDR}:{PORT}..")
-    send_sock.connect((IP_ADDR, PORT))
+    while True:
+        try:
+            send_sock.connect((IP_ADDR, PORT))
+            break
+        except ConnectionRefusedError:
+            pass
+
     print("[+] Connected.")
     send_sock.send(f"{filename}{SEPERATOR}{filesize}".encode()) #Sends the file's info to the server..
 
