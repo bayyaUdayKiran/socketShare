@@ -56,7 +56,7 @@ def connectNsendIno(filename, filesize):
     send_sock.send(f"{filename}{SEPERATOR}{filesize}".encode()) #Sends the file's info to the server..
 
 
-def send_file(filename, filesize):
+def send_file(filename, filesize, switch):
     #Sends the desired file to the recepient..
     progress = tqdm.tqdm(range(filesize), f"Sending {filename}", unit="B", unit_scale=True, unit_divisor=1024)
     with open(filename, "rb") as f:
@@ -69,7 +69,10 @@ def send_file(filename, filesize):
             progress.update(len(bytes_read))  # update the progress bar
 
     send_sock.close()
-    os.remove(filename) #Deleting the unwanted zip file..
+    if(switch=='-d'):
+        os.remove(filename) #Deleting the unwanted zip file..
+
+    
 
 def main():
     filename, filesize = file_info(switch)
@@ -83,7 +86,7 @@ def main():
         filesize = os.path.getsize(filename)
     '''
     connectNsendIno(filename, filesize)
-    send_file(filename, filesize)
+    send_file(filename, filesize, switch)
 
     
 
