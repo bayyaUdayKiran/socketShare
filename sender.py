@@ -18,7 +18,7 @@ send_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 def file_info(switch):
     for dir in os.listdir():
-        if ((dir!="recepient.py")and(dir!="sender.py")and(dir!="venv")and(dir!="socketShare.fix")):
+        if ((dir!="recepient.py")and(dir!="sender.py")and(dir!="venv")and(dir!="socketShare.fix")and(dir!=".git")):
             the_dir = dir
 
     if switch == '-d':
