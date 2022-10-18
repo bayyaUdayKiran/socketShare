@@ -15,6 +15,9 @@ HOST = sys.argv[2]
 if HOST.lower() == "realme gt":
     IP_ADDR = data[0]
 
+elif HOST.lower() == "acer pc":
+    IP_ADDR = data[0]
+
 PORT = int(sys.argv[3])
 
 
