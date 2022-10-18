@@ -6,7 +6,15 @@ import shutil
 import sys
 
 switch = sys.argv[1]
-IP_ADDR = sys.argv[2]
+
+with open("network.txt", "rb") as f:
+    data = f.readlines()
+
+HOST = sys.argv[2]
+
+if HOST.lower() == "realme gt":
+    IP_ADDR = data[0]
+
 PORT = int(sys.argv[3])
 
 
