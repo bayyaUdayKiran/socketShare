@@ -103,7 +103,7 @@ class Lib:
         #Initialize client...
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         for dir in os.listdir():
-            if (dir!='sock.py')and(dir!="lib.py"):
+            if (dir!='sock.py')and(dir!="lib.py")and(dir!="__pycache__"):
                 the_dir = dir
 
         if type == 'd' or type == 'directorise':
